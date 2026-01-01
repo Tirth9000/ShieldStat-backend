@@ -12,10 +12,10 @@ router = APIRouter(
 @router.post("/signup")
 async def signup(payload: SignupRequest, users=Depends(get_user_collection)):
     data = payload.dict()
-    data["password"] = hash_password(data["password"])
+    data["password"] = hash_password(payload.password)
     user = User(**data)
     await users.insert_one(user.to_dict())
-    return {"message": "User registered"}
+    return {"message": "Registration completed successfully"}
 
 @router.post("/authorize")
 async def signin(
