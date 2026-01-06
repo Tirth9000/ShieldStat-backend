@@ -1,5 +1,5 @@
 from datetime import datetime
-from fastapi import APIRouter, Depends,HTTPException
+from fastapi import APIRouter, Depends,HTTPException,status
 from database.database import (
     get_questions_collection,
     get_assessment_results_collection,
@@ -75,3 +75,25 @@ async def assess(
     await results.insert_one(result)
     result["_id"] = str(result["_id"])
     return result
+
+@router.get("/assess/result")
+async def get_assessment_results(
+    user=Depends(get_current_user),
+    results=Depends(get_assessment_results_collection),
+):
+    user_id = str(user["_id"])
+
+    cursor = results.find(
+        {"user": user_id},
+        {"_id": 0}
+    ).sort("createdAt", -1)
+
+    data = await cursor.to_list(length=1000)
+
+    if not data:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="No assessment results found"
+        )
+
+    return data
