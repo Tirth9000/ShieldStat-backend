@@ -59,22 +59,4 @@ Thumbs.db
 htmlcov/
 .pytest_cache/
 
-# ===============================
-# Node.js leftovers (from migration)
-# ===============================
-node_modules/
-npm-debug.log*
-yarn-error.log*
-
-# ===============================
-# Build / Distribution
-# ===============================
-build/
-dist/
-
-# ===============================
-# Misc
-# ===============================
-*.pem
-*.key
-*.crt
+test/
