@@ -51,6 +51,7 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+.cursor
 
 # ===============================
 # Testing / Coverage
@@ -60,3 +61,4 @@ htmlcov/
 .pytest_cache/
 
 test/
+memory_temp.py

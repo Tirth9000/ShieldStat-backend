@@ -3,7 +3,8 @@ load_dotenv()  # Load env vars FIRST before other imports
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api.auth.auth import router as authRouter
+from api.auth.routes import router as auth_router
+from api.scanner.routes import router as scanner_router
 from app.db.sessions import init_db, init_tables
 
 app = FastAPI()
@@ -22,7 +23,8 @@ app.add_middleware(
 )
 
 # routes
-app.include_router(authRouter)
+app.include_router(auth_router)
+app.include_router(scanner_router)
 
 
 @app.get('/')

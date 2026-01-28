@@ -11,10 +11,10 @@ router = APIRouter()
 
 # new user registration
 @router.post('/register')
-async def register(data: RegisterRequest):
-    username = data.username
-    email = data.email
-    password = data.password
+async def register(req: RegisterRequest):
+    username = req.username
+    email = req.email
+    password = req.password
 
     if not username or not email or not password:
         raise HTTPException(status_code=400, detail="Please fill all the fields")
@@ -73,10 +73,10 @@ async def register(data: RegisterRequest):
 
 # user login
 @router.post('/login')
-async def login(data: LoginRequest):
+async def login(req: LoginRequest):
     
-    email = data.email
-    password = data.password
+    email = req.email
+    password = req.password
 
     if not email or not password:
         raise HTTPException(status_code=400, detail="Please fill all the fields")
