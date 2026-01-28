@@ -1,6 +1,11 @@
 fastapi==0.110.0
 uvicorn[standard]==0.29.0
 
+# Database
+psycopg[binary]==3.1.18
+
+# Cache / Queue
+redis==5.0.1
 
 # Authentication & Security
 python-jose==3.3.0
