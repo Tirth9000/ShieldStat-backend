@@ -61,3 +61,5 @@ htmlcov/
 
 test/
 memory_temp.py
+
+app/api/scanner/test.py

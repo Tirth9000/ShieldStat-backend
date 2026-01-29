@@ -1,8 +1,11 @@
-from fastapi import FastAPI, Request, HTTPException
+from fastapi import APIRouter
+from api.webhooks.schemas import ScannerWebhookRequest
 
-app = FastAPI()
+router = APIRouter()
 
 
-@app.post("/webhooks/scanner")
-def scanner_webhook(request: Request):
-    pass
+@router.post("/webhooks/scanner")
+def scanner_webhook(request: ScannerWebhookRequest):
+    data = request.data
+    print(f"Received scanner webhook: {data}")
+
